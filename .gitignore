@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.trae/
+
+# Logs
+*.log
+
+# Env leaks (safety net — each app also has its own .gitignore)
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
