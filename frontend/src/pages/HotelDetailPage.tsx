@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import BookingModal from '../components/BookingModal';
+import { API_URL } from '../lib/api';
 
 interface Hotel {
     id: number;
@@ -106,8 +107,8 @@ export default function HotelDetailPage() {
                 setBookingSuccess(false);
 
                 const [hotelRes, roomsRes] = await Promise.all([
-                    fetch(`http://127.0.0.1:8000/api/hotels/${id}`),
-                    fetch(`http://127.0.0.1:8000/api/hotels/${id}/rooms`),
+                    fetch(`${API_URL}/api/hotels/${id}`),
+                    fetch(`${API_URL}/api/hotels/${id}/rooms`),
                 ]);
                 if (!hotelRes.ok || !roomsRes.ok) throw new Error('Failed to fetch hotel data.');
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../lib/api';
 
 interface Booking {
     id: number;
@@ -49,7 +50,7 @@ export default function BookingConfirmationPage() {
         if (!id || !token) return;
         const load = async () => {
             try {
-                const res = await fetch(`http://127.0.0.1:8000/api/bookings/${id}`, {
+                const res = await fetch(`${API_URL}/api/bookings/${id}`, {
                     headers: {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`,

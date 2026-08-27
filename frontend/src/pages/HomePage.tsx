@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../lib/api';
 
 interface Hotel {
     id: number;
@@ -266,7 +267,7 @@ export default function HomePage() {
     useEffect(() => {
         const fetchHotels = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/hotels');
+                const response = await fetch(`${API_URL}/api/hotels`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 setHotels(data);

@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../lib/api';
 
 interface Booking {
     id: number;
@@ -153,7 +154,7 @@ export default function MyBookingsPage() {
         if (!token) return;
         const load = async () => {
             try {
-                const res = await fetch('http://127.0.0.1:8000/api/bookings/mine', {
+                const res = await fetch(`${API_URL}/api/bookings/mine`, {
                     headers: {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`,
@@ -191,7 +192,7 @@ export default function MyBookingsPage() {
         setConfirmCancelId(null);
         setCancelling(id);
         try {
-            const res = await fetch(`http://127.0.0.1:8000/api/bookings/${id}/cancel`, {
+            const res = await fetch(`${API_URL}/api/bookings/${id}/cancel`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../lib/api';
 
 interface BookingModalProps {
     roomId: number;
@@ -52,7 +53,7 @@ export default function BookingModal({ roomId, roomType, pricePerNight, onClose,
         }
         setIsSubmitting(true);
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/bookings', {
+            const response = await fetch(`${API_URL}/api/bookings`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

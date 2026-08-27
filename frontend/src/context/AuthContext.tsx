@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import type { ReactNode } from 'react';
+import { API_URL } from '../lib/api';
 
 interface User {
     id: number;
@@ -40,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const logout = async () => {
         if (token) {
-            await fetch('http://127.0.0.1:8000/api/logout', {
+            await fetch(`${API_URL}/api/logout`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

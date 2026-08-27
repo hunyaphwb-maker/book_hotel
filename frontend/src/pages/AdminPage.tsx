@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../lib/api';
 
 interface Stats {
     total_bookings: number;
@@ -67,9 +68,9 @@ export default function AdminPage() {
                 setLoading(true);
                 const headers = { 'Authorization': `Bearer ${token}`, 'Accept': 'application/json' };
                 const [statsRes, bookingsRes, roomsRes] = await Promise.all([
-                    fetch('http://127.0.0.1:8000/api/admin/stats', { headers }),
-                    fetch('http://127.0.0.1:8000/api/admin/bookings', { headers }),
-                    fetch('http://127.0.0.1:8000/api/admin/rooms', { headers }),
+                    fetch(`${API_URL}/api/admin/stats`, { headers }),
+                    fetch(`${API_URL}/api/admin/bookings`, { headers }),
+                    fetch(`${API_URL}/api/admin/rooms`, { headers }),
                 ]);
                 if (!statsRes.ok || !bookingsRes.ok || !roomsRes.ok) throw new Error('Failed to load admin data');
                 setStats(await statsRes.json());
